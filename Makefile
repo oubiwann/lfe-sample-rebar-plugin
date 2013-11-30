@@ -23,6 +23,7 @@ clean-eunit:
 
 compile: get-deps clean-ebin
 	rebar compile
+	@mv $(OUT_DIR)/*.beam .
 
 compile-tests: clean-eunit
 	mkdir -p $(TEST_OUT_DIR)
