@@ -15,4 +15,4 @@
       (assert-exit 2))))
 
 (defun noop_test ()
-  (assert-equal 1 2))
+  (assert-equal 1 1))
