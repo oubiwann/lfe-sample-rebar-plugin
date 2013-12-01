@@ -1,8 +1,8 @@
-{application,'lfe-rebar-plugin',
+{application,'lfe-sample-rebar-plugin',
              [{description,[]},
               {vsn,"1"},
               {registered,[]},
               {applications,[kernel,stdlib]},
-              {mod,{'lfe-rebar-plugin_app',[]}},
+              {mod,{'lfe-sample-rebar-plugin_app',[]}},
               {env,[]},
-              {modules,['lfe-rebar-plugin']}]}.
+              {modules,['lfe-sample-rebar-plugin']}]}.
