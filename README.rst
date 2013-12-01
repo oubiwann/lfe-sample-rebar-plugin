@@ -1,8 +1,8 @@
-################
-lfe-rebar-plugin
-################
+#######################
+lfe-sample-rebar-plugin
+#######################
 
-A rebar plugin for LFE projects
+A sample rebar plugin, written in LFE
 
 Introduction
 ============
