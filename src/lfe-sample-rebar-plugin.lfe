@@ -1,4 +1,4 @@
-(defmodule lfe-rebar-plugin
+(defmodule lfe-sample-rebar-plugin
   (export all))
 
 

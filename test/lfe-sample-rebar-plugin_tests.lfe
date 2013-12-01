@@ -1,4 +1,4 @@
-(defmodule lfe-rebar-plugin_tests
+(defmodule lfe-sample-rebar-plugin_tests
   (export all)
   (import
     (from lfeunit-util
