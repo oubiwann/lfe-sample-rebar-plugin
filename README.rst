@@ -57,16 +57,45 @@ it.
 Usage
 =====
 
-Once you've got the sample plugin in your ``deps`` directory, it's as simple as
-this:
+Once you've got the sample plugin compiled, you can run the plugin's functions.
+This sample plugin provides two functions which both only print output in the
+terminal, they don't perform any changes to the system. The two functions are:
+
+* ``run-in-basedir``
+
+* ``run-in-other-dirs``
+
+Here they are in action:
 
 .. code:: bash
 
-    $ rebar foo
+    $ rebar run-in-basedir
+    ==> lfe (run-in-basedir)
+    ==> lfeunit (run-in-basedir)
+    ==> lfe-utils (run-in-basedir)
+    ==> rebar (run-in-basedir)
+    ==> lfe-sample-rebar-plugin (run-in-basedir)
+    Just ran the 'run-in-basedir' command in the plugin!
 
-The plugin will iterate through the set of deps and base directories, calling
-the plugin function ``foo`` in the process. ``foo`` will only print a result
-if your installation of ``rebar`` can access the global data structure.
+All plugins will iterate through the set of deps and base directories, calling
+the given plugin function. In this case, the function called only operates on
+the base directory.
+
+.. code:: bash
+
+    $ rebar run-in-other-dirs
+    ==> lfe (run-in-other-dirs)
+    Just ran the 'run-in-other-dirs' command in the plugin!
+    ==> lfeunit (run-in-other-dirs)
+    Just ran the 'run-in-other-dirs' command in the plugin!
+    ==> lfe-utils (run-in-other-dirs)
+    Just ran the 'run-in-other-dirs' command in the plugin!
+    ==> rebar (run-in-other-dirs)
+    Just ran the 'run-in-other-dirs' command in the plugin!
+    ==> lfe-sample-rebar-plugin (run-in-other-dirs)
+
+As you can see, this plugin function does just the opposite: it executes on
+every directory other than the base directory.
 
 
 .. Links
