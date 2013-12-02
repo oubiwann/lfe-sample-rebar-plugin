@@ -11,7 +11,6 @@
   ;xconf
   )
 
-
 (defun debug-data-structure (config-data)
   (: io format '"~n~n" ())
   (: io format '"Element 1:~n~p~n" (list (element 1 config-data)))
@@ -41,8 +40,7 @@
 
 (defun foo (config app-file)
   "We only want to execute this plugin when it's in this directory."
- (: file write_file '"data.erl" config)
- (: io format '"~nWorking directory: ~p~n" (list (: rebar_utils get_cwd)))
+ (: lfe-utils dump-data '"debug-config-data.erl" config)
  (case (base-dir? config)
    ('true (: io format '"foo!~n"))
    ; the following will only print with "rebard foo -v"
