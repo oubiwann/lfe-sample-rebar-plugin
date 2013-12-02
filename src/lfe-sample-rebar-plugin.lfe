@@ -10,27 +10,9 @@
   skip-dirs
   xconf)
 
-(defun debug-data-structure (config-data)
-  (: io format '"~n~n" ())
-  (: io format '"Element 1:~n~p~n" (list (element 1 config-data)))
-  (: io format '"Element 2:~n~p~n" (list (element 2 config-data)))
-  (: io format '"Element 3:~n~p~n" (list (element 3 config-data)))
-  (: io format '"Element 4:~n~p~n" (list (element 4 config-data)))
-  (: io format '"Element 5:~n~p~n" (list (element 5 config-data)))
-  (: io format '"Element 6:~n~p~n" (list (element 6 config-data)))
-  (: io format '"Element 7:~n~p~n" (list (element 7 config-data)))
-  (: io format '"~n~n" ()))
-
-(defun debug-data-structure (config-data type)
-  (: io format '"~n~n" ())
-  (: io format '"~n~p~n" (list config-data))
-  (: io format '"~n~n" ()))
-
 (defun get-base-dir (config-data)
   "Get the top-level directory for the project."
-  ;(debug-data-structure config-data 'simple)
-  ;(debug-data-structure config-data)
-  (case (: dict find 'base_dir (config-globals config-data))
+  (case (: dict find 'base_dir (config-xconf config-data))
     ((tuple 'ok dir) dir)
     ('error "")))
 
@@ -40,11 +22,24 @@
     (: rebar_utils get_cwd)
     (get-base-dir config-data)))
 
-(defun foo (config app-file)
-  "We only want to execute this plugin when it's in this directory."
+(defun run-in-basedir (config app-file)
+  "We only want to execute this function when the plugin is running in the
+  base directory."
  (: lfe-utils dump-data '"debug-config-data.erl" config)
  (case (base-dir? config)
-   ('true (: io format '"foo!~n"))
+   ('true (: io format
+             '"Just ran the 'run-in-basedir' command in the plugin!~n"))
+   ; the following will only print with "rebard foo -v"
+   ;('true (: rebar_log log 'warn '"foo!~n" ()))
+   ('false 'ok)))
+
+(defun run-in-other-dirs (config app-file)
+  "We want to execute this function whenever the plugin is not running in the
+  base directory."
+ ;(: lfe-utils dump-data '"debug-config-data.erl" config)
+ (case (not (base-dir? config))
+   ('true (: io format
+             '"Just ran the 'run-in-other-dirs' command in the plugin!~n"))
    ; the following will only print with "rebard foo -v"
    ;('true (: rebar_log log 'warn '"foo!~n" ()))
    ('false 'ok)))
