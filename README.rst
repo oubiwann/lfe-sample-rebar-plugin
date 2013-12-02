@@ -75,7 +75,7 @@ Here they are in action:
     ==> lfe-utils (run-in-basedir)
     ==> rebar (run-in-basedir)
     ==> lfe-sample-rebar-plugin (run-in-basedir)
-    Just ran the 'run-in-basedir' command in the plugin!
+    Just ran the 'run-in-basedir' plugin command!
 
 All plugins will iterate through the set of deps and base directories, calling
 the given plugin function. In this case, the function called only operates on
@@ -85,13 +85,13 @@ the base directory.
 
     $ rebar run-in-other-dirs
     ==> lfe (run-in-other-dirs)
-    Just ran the 'run-in-other-dirs' command in the plugin!
+    Just ran the 'run-in-other-dirs' plugin command!
     ==> lfeunit (run-in-other-dirs)
-    Just ran the 'run-in-other-dirs' command in the plugin!
+    Just ran the 'run-in-other-dirs' plugin command!
     ==> lfe-utils (run-in-other-dirs)
-    Just ran the 'run-in-other-dirs' command in the plugin!
+    Just ran the 'run-in-other-dirs' plugin command!
     ==> rebar (run-in-other-dirs)
-    Just ran the 'run-in-other-dirs' command in the plugin!
+    Just ran the 'run-in-other-dirs' plugin command!
     ==> lfe-sample-rebar-plugin (run-in-other-dirs)
 
 As you can see, this plugin function does just the opposite: it executes on

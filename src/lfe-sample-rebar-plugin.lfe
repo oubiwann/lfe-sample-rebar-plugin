@@ -27,10 +27,7 @@
   base directory."
  (: lfe-utils dump-data '"debug-config-data.erl" config)
  (case (base-dir? config)
-   ('true (: io format
-             '"Just ran the 'run-in-basedir' command in the plugin!~n"))
-   ; the following will only print with "rebard foo -v"
-   ;('true (: rebar_log log 'warn '"foo!~n" ()))
+   ('true (: io format '"Just ran the 'run-in-basedir' plugin command!~n"))
    ('false 'ok)))
 
 (defun run-in-other-dirs (config app-file)
@@ -38,8 +35,5 @@
   base directory."
  ;(: lfe-utils dump-data '"debug-config-data.erl" config)
  (case (not (base-dir? config))
-   ('true (: io format
-             '"Just ran the 'run-in-other-dirs' command in the plugin!~n"))
-   ; the following will only print with "rebard foo -v"
-   ;('true (: rebar_log log 'warn '"foo!~n" ()))
+   ('true (: io format '"Just ran the 'run-in-other-dirs' plugin command!~n"))
    ('false 'ok)))
