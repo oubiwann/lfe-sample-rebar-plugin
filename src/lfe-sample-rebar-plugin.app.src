@@ -1,6 +1,6 @@
 {application,'lfe-sample-rebar-plugin',
              [{description,[]},
-              {vsn,"1"},
+              {vsn,"0.0.1"},
               {registered,[]},
               {applications,[kernel,stdlib]},
               {mod,{'lfe-sample-rebar-plugin_app',[]}},
