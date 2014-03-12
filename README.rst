@@ -30,7 +30,7 @@ Installation
 ============
 
 Installation assumes you have created your LFE ``rebar`` plugin project
-using `lfe-skeleton`_.
+using `lfetool`_.
 
 In order to use this plugin, you will need to do the following:
 
@@ -58,18 +58,67 @@ Usage
 =====
 
 Once you've got the sample plugin compiled, you can run the plugin's functions.
-This sample plugin provides two functions which both only print output in the
-terminal, they don't perform any changes to the system. The two functions are:
+This sample plugin provides the follwoing commands (which both only print to
+stdout, they don't perform any changes to the system):
 
-* ``run-in-basedir``
+* ``list-plugins``
 
-* ``run-in-other-dirs``
+* ``commands``
 
-Here they are in action:
+* ``demo-run-in-basedir``
+
+* ``demo-run-in-other-dirs``
+
+The are displayed below "in action". Note that these commands are run in the
+working directory (``git clone`` of ``lfe-sample-rebar-plugin``) after a
+``make compile`` has been done:
+
+
+``commands``
+------------
 
 .. code:: bash
 
-    $ rebar run-in-basedir
+    $ ERL_LIBS=. rebar commands
+    ==> lfe (commands)
+    ==> lfeunit (commands)
+    ==> lfe-utils (commands)
+    ==> rebar (commands)
+    ==> lfe-sample-rebar-plugin (commands)
+
+    clean                                Clean
+    compile                              Compile sources
+    .
+    .
+    .
+    Commands for the 'lfe-sample-rebar-plugin` rebar plugin:
+
+      demo-run-in-basedir            Display a demo message while processing the current dir
+      demo-run-in-other-dirs         Displa a demo message while processing deps dirs
+      list-plugins               List all the plugins defined for the current dir
+      commands               List both the default commands and those for the plugins
+
+
+``list-plugins``
+----------------
+
+.. code:: bash
+
+    $ ERL_LIBS=. rebar list-plugins
+    ==> lfe (list-plugins)
+    ==> lfeunit (list-plugins)
+    ==> lfe-utils (list-plugins)
+    ==> rebar (list-plugins)
+    ==> lfe-sample-rebar-plugin (list-plugins)
+    ['lfe-sample-rebar-plugin']
+
+
+``demo-run-in-basedir``
+-----------------------
+
+.. code:: bash
+
+    $ ERL_LIBS=. rebar demo-run-in-basedir
     ==> lfe (run-in-basedir)
     ==> lfeunit (run-in-basedir)
     ==> lfe-utils (run-in-basedir)
@@ -81,9 +130,13 @@ All plugins will iterate through the set of deps and base directories, calling
 the given plugin function. In this case, the function called only operates on
 the base directory.
 
+
+``demo-run-in-other-dirs``
+--------------------------
+
 .. code:: bash
 
-    $ rebar run-in-other-dirs
+    $ ERL_LIBS=. rebar demo-run-in-other-dirs
     ==> lfe (run-in-other-dirs)
     Just ran the 'run-in-other-dirs' plugin command!
     ==> lfeunit (run-in-other-dirs)
@@ -98,9 +151,20 @@ As you can see, this plugin function does just the opposite: it executes on
 every directory other than the base directory.
 
 
+Development
+===========
+
+To add new plugin commands, simply do the following:
+
+# create a command function that takes ``rebar-config`` and ``app-file`` as
+  parameters
+# update the ``get-commands-help`` function with the new command function you
+  added
+
+
 .. Links
 .. =====
 .. _rebar: https://github.com/rebar/rebar
 .. _LFE: https://github.com/rvirding/lfe
 .. _lfeunit: https://github.com/lfe/lfeunit
-.. _lfe-skeleton: https://github.com/lfe/skeleton-project
+.. _lfetool: https://github.com/lfe/lfetool
