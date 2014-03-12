@@ -24,7 +24,9 @@ clean-eunit:
 
 compile: get-deps clean-ebin
 	rebar compile
-	@mv $(OUT_DIR)/*.beam .
+
+compile-no-deps: clean-ebin
+	rebar compile skip_deps=true
 
 compile-tests: clean-eunit
 	mkdir -p $(TEST_OUT_DIR)
@@ -33,6 +35,10 @@ compile-tests: clean-eunit
 shell: compile
 	clear
 	ERL_LIBS=$(ERL_LIBS) $(LFE) -pa $(TEST_OUT_DIR)
+
+shell-no-deps: compile-no-deps
+	@clear
+	ERL_LIBS=$(ERL_LIBS) $(LFE) -pa $(TEST_EBIN_DIR)
 
 clean: clean-ebin clean-eunit
 	rebar clean
